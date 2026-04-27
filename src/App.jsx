@@ -607,17 +607,10 @@ export default function App() {
       setProgressMsg('Homologando contra diccionario Evaluar (149 competencias)...');
 
       // Llamar directamente a la API de Anthropic
-      const apiKey = localStorage.getItem('anthropic_api_key');
-      if (!apiKey) {
-        throw new Error('⚠️ Configura tu API key de Anthropic.\n\nEjecuta en consola:\nlocalStorage.setItem("anthropic_api_key", "tu-key")');
-      }
-
-      const apiResponse = await fetch('https://api.anthropic.com/v1/messages', {
+      const apiResponse = await fetch('/api/homologar', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
